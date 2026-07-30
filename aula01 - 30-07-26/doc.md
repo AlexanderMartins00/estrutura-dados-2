@@ -25,7 +25,8 @@ A atividade tem o intuito de relembrar e compreender o funcionamento do algoritm
 ---
 
 ## 3. Desenvolvimento
-- Foi criado um vetor de **1000 posições**.  
+- Foi criado um vetor de **10, 100, 10.000, 100.000, 1.000.000
+ posições**.  
 - Os valores foram preenchidos com números aleatórios entre **1 e 10**, utilizando a classe `ThreadLocalRandom`.  
 - O algoritmo **Bubble Sort** foi implementado com dois laços `for` aninhados, comparando elementos adjacentes e realizando trocas quando necessário.  
 - O tempo de execução foi medido com `System.nanoTime()`, registrando o intervalo entre o início e o término da ordenação.  
