@@ -1,3 +1,4 @@
+package aula02_18_08_26.src;
 import java.util.Scanner;
 
 public class fila {
