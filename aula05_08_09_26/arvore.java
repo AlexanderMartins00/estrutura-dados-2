@@ -1,6 +1,7 @@
 
 package aula05_08_09_26;
 
+
 public class arvore {
 
     no raiz;
@@ -59,7 +60,7 @@ public class arvore {
     public void inserir(no pai, int valor) {
 
         if (valor < pai.valor) {
-            if (pai.esquerda != null) {
+            if(pai.esquerda != null) {
                 inserir(pai.esquerda, valor);
             } else {
                 System.out.println("Inserindo " + valor + " a esquerda " + pai.valor);
@@ -130,6 +131,36 @@ public class arvore {
             return node;
         } else {
             return null;
+        }
+    }
+
+    public void exibir() {
+        exibir(this.raiz, 0);
+    }
+
+    private void exibir(no no, int espaco) {
+
+        int INCREMENTO = 8;
+
+        if (no == null) {
+            return;
+        }
+
+        espaco += INCREMENTO;
+
+        // Primeiro o filho da direita (vai aparecer no topo)
+        exibir(no.direita, espaco);
+
+        System.out.println();
+        imprimirEspacos(espaco - INCREMENTO);
+        System.out.println(no.valor);
+
+        // Depois o filho da esquerda (vai aparecer embaixo)
+        exibir(no.esquerda, espaco);
+    }
+     private void imprimirEspacos(int quantidade) {
+        for (int i = 0; i < quantidade; i++) {
+            System.out.print(" ");
         }
     }
 }
