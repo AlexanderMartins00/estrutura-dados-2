@@ -1,12 +1,12 @@
-package aula07_12_09_26;
+package aula07_12_09_26.exercicio02;
 
-public class no {
+public class no02 {
     int valor;
     int altura;
-    no esquerda;
-    no direita;
+    no02 esquerda;
+    no02 direita;
 
-    public no(int valor) {
+    public no02(int valor) {
         this.valor = valor;
         this.altura = 1;
         this.esquerda = null;

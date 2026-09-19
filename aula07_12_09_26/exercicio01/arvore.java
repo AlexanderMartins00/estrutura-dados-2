@@ -1,4 +1,4 @@
-package aula07_12_09_26;
+package aula07_12_09_26.exercicio01;
 
 public class arvore {
 
@@ -50,12 +50,10 @@ public class arvore {
         return y;
     }
 
-    // Método público de inserção
     public void inserir(int valor) {
         this.raiz = inserir(this.raiz, valor);
     }
 
-    // Método privado recursivo com rebalanceamento AVL
     private no inserir(no pai, int valor) {
         if (pai == null) {
             return new no(valor);
@@ -66,30 +64,26 @@ public class arvore {
         } else if (valor > pai.valor) {
             pai.direita = inserir(pai.direita, valor);
         } else {
-            return pai; // Não permite valores duplicados
+            return pai;
         }
 
         pai.altura = 1 + getMax(getAltura(pai.esquerda), getAltura(pai.direita));
 
         int balanco = getBalanceamento(pai);
 
-        // Caso Esquerda-Esquerda (Rotacao Simples a Direita)
         if (balanco > 1 && valor < pai.esquerda.valor) {
             return rotacaoDireita(pai);
         }
 
-        // Caso Direita-Direita (Rotacao Simples a Esquerda)
         if (balanco < -1 && valor > pai.direita.valor) {
             return rotacaoEsquerda(pai);
         }
 
-        // Caso Esquerda-Direita (Rotacao Dupla a Direita)
         if (balanco > 1 && valor > pai.esquerda.valor) {
             pai.esquerda = rotacaoEsquerda(pai.esquerda);
             return rotacaoDireita(pai);
         }
 
-        // Caso Direita-Esquerda (Rotacao Dupla a Esquerda)
         if (balanco < -1 && valor < pai.direita.valor) {
             pai.direita = rotacaoDireita(pai.direita);
             return rotacaoEsquerda(pai);
@@ -98,12 +92,10 @@ public class arvore {
         return pai;
     }
 
-    // Método público de remoção
     public void remover(int valor) {
         this.raiz = remover(this.raiz, valor);
     }
 
-    // Método privado recursivo para remoção na Árvore AVL
     private no remover(no pai, int valor) {
         if (pai == null) {
             return pai;
@@ -114,18 +106,18 @@ public class arvore {
         } else if (valor > pai.valor) {
             pai.direita = remover(pai.direita, valor);
         } else {
-            // Nó com um filho ou nenhum
+
             if ((pai.esquerda == null) || (pai.direita == null)) {
                 no temp = (pai.esquerda != null) ? pai.esquerda : pai.direita;
 
-                if (temp == null) { // Sem filhos
+                if (temp == null) {
                     temp = pai;
                     pai = null;
-                } else { // Um filho
+                } else {
                     pai = temp;
                 }
             } else {
-                // Nó com dois filhos: obtém o menor elemento da subárvore direita
+
                 no temp = obterNoMinimo(pai.direita);
                 pai.valor = temp.valor;
                 pai.direita = remover(pai.direita, temp.valor);
@@ -136,12 +128,10 @@ public class arvore {
             return pai;
         }
 
-        // Atualiza a altura do nó atual
         pai.altura = 1 + getMax(getAltura(pai.esquerda), getAltura(pai.direita));
 
         int balanco = getBalanceamento(pai);
 
-        // Rebalanceamento pós-remoção
         if (balanco > 1 && getBalanceamento(pai.esquerda) >= 0) {
             return rotacaoDireita(pai);
         }
@@ -185,7 +175,8 @@ public class arvore {
 
     private void exibir(no no, int espaco) {
         int INCREMENTO = 8;
-        if (no == null) return;
+        if (no == null)
+            return;
 
         espaco += INCREMENTO;
         exibir(no.direita, espaco);
